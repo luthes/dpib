@@ -1,0 +1,16 @@
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cicd
+  labels:
+    name: cicd
+    istio-injection: enabled
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: apps
+  labels:
+    name: apps
+    istio-injection: enabled
