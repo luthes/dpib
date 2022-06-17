@@ -38,43 +38,43 @@ spec:
     automated:
       selfHeal: true
       prune: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argo-events
-  namespace: cicd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: infra-production
-  source:
-    path: cicd-apps/argo-events/overlays/production
-    repoURL: https://github.com/luthes/dpib  # this has to match what's in our repo secret
-    targetRevision: development
-  destination:
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: argo-rollouts
-  namespace: cicd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: infra-production
-  source:
-    path: cicd-apps/argo-rollouts/overlays/production
-    repoURL: https://github.com/luthes/dpib  # this has to match what's in our repo secret
-    targetRevision: development
-  destination:
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argo-events
+#   namespace: cicd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: infra-production
+#   source:
+#     path: cicd-apps/argo-events/overlays/production
+#     repoURL: https://github.com/luthes/dpib  # this has to match what's in our repo secret
+#     targetRevision: development
+#   destination:
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: argo-rollouts
+#   namespace: cicd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: infra-production
+#   source:
+#     path: cicd-apps/argo-rollouts/overlays/production
+#     repoURL: https://github.com/luthes/dpib  # this has to match what's in our repo secret
+#     targetRevision: development
+#   destination:
+#     server: https://kubernetes.default.svc
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
