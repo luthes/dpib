@@ -7,10 +7,10 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: infra-staging
+  project: infra-production
   source:
-    path: cicd-apps/overlays/production
-    repoURL: https://github.com/luthes/dpib
+    path: cicd-apps/argo-cd/overlays/production
+    repoURL: git@github.com:luthes/dpib
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
