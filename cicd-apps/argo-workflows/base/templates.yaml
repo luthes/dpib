@@ -23,7 +23,7 @@ spec:
           - --context={{inputs.parameters.repo_url}}#{{inputs.parameters.repo_ref}}#{{inputs.parameters.repo_commit_id}}
           - --destination={{inputs.parameters.container_image}}:{{inputs.parameters.container_tag}}
         volumeMounts:
-          - name: regcred
+          - name: registry-credentials
             mountPath: /kaniko/.docker/
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -60,5 +60,5 @@ spec:
           git commit -m "Upgraded {{inputs.parameters.environment}}/{{inputs.parameters.image_name}}.yaml with the tag {{inputs.parameters.tag}}"
           git push
         volumeMounts:
-          - name: github-access
+          - name: github-credentials
             mountPath: /.github/
