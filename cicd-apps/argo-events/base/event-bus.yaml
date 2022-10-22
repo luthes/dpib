@@ -9,27 +9,6 @@ spec:
       replicas: 3
       auth: token
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: github-eventsource
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/ssl-redirect: 'false'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /push
-            pathType: Prefix
-            backend:
-              service:
-                name: webhook-eventsource-svc
-                port:
-                  number: 12000
-      host: acme.com
----
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
@@ -45,11 +24,11 @@ spec:
       repository: dbt_core_models
       webhook:
         endpoint: /dbt_core_models
-        port: '12000'
+        port: "12000"
         method: POST
         url: http://acme.com
       events:
-        - '*'
+        - "*"
       apiToken:
         name: github-access
         key: token
@@ -57,36 +36,11 @@ spec:
       active: true
       contentType: json
 ---
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: github
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/ssl-redirect: 'false'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: github-eventsource-svc
-                port:
-                  number: 12000
-      host: acme.com
----
-...
----
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    rbac.authorization.k8s.io/aggregate-to-admin: 'true'
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
   name: argo-events-aggregate-to-admin
 rules:
   - apiGroups:
@@ -111,12 +65,11 @@ rules:
       - update
       - watch
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    rbac.authorization.k8s.io/aggregate-to-edit: 'true'
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
   name: argo-events-aggregate-to-edit
 rules:
   - apiGroups:
@@ -141,12 +94,11 @@ rules:
       - update
       - watch
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    rbac.authorization.k8s.io/aggregate-to-view: 'true'
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
   name: argo-events-aggregate-to-view
 rules:
   - apiGroups:
@@ -166,7 +118,6 @@ rules:
       - list
       - watch
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -178,9 +129,8 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: argo-events-sa
-    namespace: argo-events
+    namespace: argocd
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -216,7 +166,7 @@ rules:
       - eventbus/finalizers
       - eventbus/status
   - apiGroups:
-      - ''
+      - ""
     resources:
       - pods
       - pods/exec
@@ -246,7 +196,6 @@ rules:
       - patch
       - delete
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: Sensor
 metadata:
@@ -272,7 +221,7 @@ spec:
               kind: Workflow
               metadata:
                 generateName: argo-combined-app-
-                namespace: workflows
+                namespace: argocd
               spec:
                 entrypoint: build
                 serviceAccountName: workflow
@@ -305,15 +254,15 @@ spec:
                           arguments:
                             parameters:
                               - name: repo_url
-                                value: ''
+                                value: ""
                               - name: repo_ref
-                                value: ''
+                                value: ""
                               - name: repo_commit_id
-                                value: ''
+                                value: ""
                               - name: container_image
                                 value: CHANGE_ME_IMAGE_OWNER/
                               - name: container_tag
-                                value: ''
+                                value: ""
                         - name: promote-staging
                           templateRef:
                             name: promote
@@ -330,9 +279,9 @@ spec:
                               - name: image_owner
                                 value: CHANGE_ME_IMAGE_OWNER
                               - name: image_name
-                                value: ''
+                                value: ""
                               - name: tag
-                                value: ''
+                                value: ""
                           dependencies:
                             - build
                         - name: promote-production
@@ -351,9 +300,9 @@ spec:
                               - name: image_owner
                                 value: CHANGE_ME_IMAGE_OWNER
                               - name: image_name
-                                value: ''
+                                value: ""
                               - name: tag
-                                value: ''
+                                value: ""
                           dependencies:
                             - test-functional
                             - test-integration
