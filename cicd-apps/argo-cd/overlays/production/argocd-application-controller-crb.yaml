@@ -7,7 +7,6 @@ metadata:
     app.kubernetes.io/component: application-controller
   name: argocd-application-controller
 subjects:
-- kind: ServiceAccount
-  name: argocd-application-controller
-  namespace: cicd
-
+  - kind: ServiceAccount
+    name: argocd-application-controller
+    namespace: cicd
