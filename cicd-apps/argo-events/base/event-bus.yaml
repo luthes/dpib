@@ -41,10 +41,10 @@ spec:
         targetPort: 12000
   github:
     argo-combined-app:
-      owner: vfarcic
-      repository: argo-combined-app
+      owner: dataos
+      repository: dbt_core_models
       webhook:
-        endpoint: /argo-combined-app
+        endpoint: /dbt_core_models
         port: '12000'
         method: POST
         url: http://acme.com
