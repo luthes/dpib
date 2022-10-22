@@ -1,15 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../base/
+  - ../../base/
 namespace: cicd
-patches:
-  - path: argocd-application-controller-crb.yaml
-    target:
-      kind: ClusterRoleBinding
-      name: argocd-application-controller
-  - path: argocd-server-rbac-crb.yaml
-    target:
-      kind: ClusterRoleBinding
-      name: argocd-server
-
+# patches:
+#   - path: argocd-application-controller-crb.yaml
+#     target:
+#       kind: ClusterRoleBinding
+#       name: argocd-application-controller
+#   - path: argocd-server-rbac-crb.yaml
+#     target:
+#       kind: ClusterRoleBinding
+#       name: argocd-server
+#

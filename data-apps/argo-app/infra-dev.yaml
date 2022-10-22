@@ -1,0 +1,12 @@
+project: infra-dev
+source:
+  repoURL: "git@github.com:luthes/dpib"
+  path: data-apps
+  targetRevision: HEAD
+destination:
+  server: "https://kubernetes.default.svc"
+  namespace: apps
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
