@@ -2,9 +2,9 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: cicd
+  name: argocd
   labels:
-    name: cicd
+    name: argocd
     istio-injection: enabled
 ---
 kind: Namespace

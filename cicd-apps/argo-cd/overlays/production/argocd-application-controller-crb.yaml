@@ -9,4 +9,4 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: argocd-application-controller
-    namespace: cicd
+    namespace: argocd
