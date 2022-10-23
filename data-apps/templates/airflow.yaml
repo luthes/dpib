@@ -3,12 +3,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: airflow
-  namespace: apps
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: apps
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:

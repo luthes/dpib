@@ -1,12 +1,26 @@
-project: infra-dev
-source:
-  repoURL: "git@github.com:luthes/dpib"
-  path: data-apps
-  targetRevision: HEAD
-destination:
-  server: "https://kubernetes.default.svc"
-  namespace: apps
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: "2022-10-22T22:56:08Z"
+  deletionGracePeriodSeconds: 0
+  deletionTimestamp: "2022-10-22T23:11:04Z"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/foreground
+  generation: 19
+  name: differentialapp
+  namespace: argocd
+  resourceVersion: "30239"
+  uid: 12ae7fc6-2d37-4193-a720-8dc0722f4315
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: infra-dev
+  source:
+    path: data-apps
+    repoURL: git@github.com:luthes/dpib
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
