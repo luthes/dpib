@@ -1,7 +1,8 @@
-airflow:
+default:
   spec:
     destination:
       server: https://kubernetes.default.svc
+airflow:
   # Licensed to the Apache Software Foundation (ASF) under one
   # or more contributor license agreements.  See the NOTICE file
   # distributed with this work for additional information
@@ -67,9 +68,9 @@ airflow:
     # all the 'run-airflow-migrations' and 'wait-for-airflow-migrations' containers/jobs
     # will use the images from 'defaultAirflowRepository:defaultAirflowTag' values
     # to run and wait for DB migrations .
-    useDefaultImageForMigration: false
+    useDefaultImageForMigration: true
     # timeout (in seconds) for airflow-migrations to complete
-    migrationsWaitTimeout: 60
+    migrationsWaitTimeout: 120
     pod_template:
       repository: ~
       tag: ~
