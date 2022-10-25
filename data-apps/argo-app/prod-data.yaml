@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-data-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: apps
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: data-apps
+    repoURL: git@github.com:luthes/dpib
+    targetRevision: development
+    helm:
+      valueFiles:
+        - values/airflow/dev.yaml
+        - values/airbyte/dev.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 2
