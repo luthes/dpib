@@ -3,12 +3,3 @@ kind: Kustomization
 resources:
   - ../../base/
 namespace: argocd
-patches:
-  - path: argocd-application-controller-crb.yaml
-    target:
-      kind: ClusterRoleBinding
-      name: argocd-application-controller
-  - path: argocd-server-rbac-crb.yaml
-    target:
-      kind: ClusterRoleBinding
-      name: argocd-server

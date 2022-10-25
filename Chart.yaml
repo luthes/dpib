@@ -1,0 +1,34 @@
+apiVersion: v2
+name: differential
+description: Differential is a malleable data platform with all pieces included. The name is chosen because an automobiles differential is made up of different sized gears, with inputs and outputs, all neatly packaged, allowing the car to steer, much like data allows a business to chose their own direction.
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
+dependencies:
+# We should have another dependency in here to install the AWS EFS Driver.
+# https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html
+
+###############################
+#
+# IaC/CICD/etc.
+#
+###############################
+# Argo Events/Workflows/CD
+# Istio
+# GitLab?
+# Prometheus/Grafana
+
+###############################
+#
+# Data
+#
+###############################
+- name: airflow
+  version: 1.6.0
+  repository: https://airflow.apache.org
+  tags:
+    - airflow-cluster
+# Airbyte
+# PySpark/Apache Beam
+# dbt core
+# Superset
