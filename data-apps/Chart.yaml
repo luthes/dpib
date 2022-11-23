@@ -1,6 +1,6 @@
 apiVersion: v2
-name: test
-description: test
+name: dataplatformapp
+description: This is a complete Data Platform using only Opensource tools.
 type: application
 version: 0.0.1
 appVersion: "0.0.1"
