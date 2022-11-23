@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://airflow.apache.org
     targetRevision: 1.7.0
-    chart: apache-airflow
+    chart: apache-airflow/airflow
     helm:
       valueFiles:
         - values/airflow/dev.yaml
