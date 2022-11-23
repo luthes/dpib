@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -9,7 +10,7 @@ spec:
   destination:
     namespace: apps
     server: https://kubernetes.default.svc
-  project: dev-data-apps
+  project: apps-dev
   source:
     path: data-apps
     repoURL: git@github.com:luthes/dpib
