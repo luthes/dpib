@@ -9,7 +9,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: { { .Values.airflow.spec.destination.server } }
+    server: { { .Values.spec.destination.server } }
   project: default
   source:
     repoURL: https://airflow.apache.org
