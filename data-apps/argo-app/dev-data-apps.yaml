@@ -1,4 +1,3 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -8,9 +7,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: apps
+    namespace: argocd
     server: https://kubernetes.default.svc
-  project: apps-dev
+  project: default
   source:
     path: data-apps
     repoURL: git@github.com:luthes/dpib
@@ -18,6 +17,7 @@ spec:
     helm:
       valueFiles:
         - values/airflow/dev.yaml
+        #- values/airbyte/dev.yaml
   syncPolicy:
     automated:
       prune: true
