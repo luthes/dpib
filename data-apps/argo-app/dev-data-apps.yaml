@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   project: infra-dev
   source:
-    path: data-apps
+    path: ./data-apps
     repoURL: git@github.com:luthes/dpib
     targetRevision: development
     helm:
