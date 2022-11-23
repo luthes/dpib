@@ -3,11 +3,13 @@ kind: Application
 metadata:
   name: dev-data-apps
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: apps
     server: https://kubernetes.default.svc
-  project: default
+  project: dev-data-apps
   source:
     path: data-apps
     repoURL: git@github.com:luthes/dpib
@@ -15,7 +17,6 @@ spec:
     helm:
       valueFiles:
         - values/airflow/dev.yaml
-        - values/airbyte/dev.yaml
   syncPolicy:
     automated:
       prune: true

@@ -1,17 +1,23 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: airflow
-  namespace: argocd
+  name: prometheus
+  namespace: default
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
+    namespace: apps
+  project: dev-data-apps
   source:
-    path: chart
-    repoURL: https://github.com/apache/airflow
-    targetRevision: 2.4.1
+    repoURL: https://airflow.apache.org
+    targetRevision: 1.7.0
+    chart: apache-airflow
+    helm:
+      valueFiles:
+        - values/airflow/dev.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

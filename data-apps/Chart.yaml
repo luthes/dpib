@@ -4,19 +4,18 @@ description: test
 type: application
 version: 0.0.1
 appVersion: "0.0.1"
-
-dependencies:
-  - name: airbyte
-    version: 0.40.33 # This is the chart version, _not_ the Airflow version
-    repository: https://airbytehq.github.io/helm-charts
-    tags:
-      - tool
-      - airbyte
-    alias: airbyte
-  - name: airflow
-    version: 1.6.0 # This is the chart version, _not_ the Airflow version
-    repository: https://airflow.apache.org
-    tags:
-      - tool
-      - airflow
-    alias: airflow
+# dependencies:
+#   - name: airbyte
+#     version: 0.40.33 # This is the chart version, _not_ the Airflow version
+#     repository: https://airbytehq.github.io/helm-charts
+#     tags:
+#       - tool
+#       - airbyte
+#     alias: airbyte
+#   - name: airflow
+#     version: 1.6.0 # This is the chart version, _not_ the Airflow version
+#     repository: https://airflow.apache.org
+#     tags:
+#       - tool
+#       - airflow
+#     alias: airflow
