@@ -1,0 +1,10 @@
+apiVersion: v2
+name: platform-airflow
+description: Airflow as part of our complete Open Source Data Platform
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
+dependencies:
+  - name: airflow
+    version: 1.7.0
+    repository: https://airflow.apache.org
