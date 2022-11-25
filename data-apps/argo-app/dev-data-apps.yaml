@@ -19,7 +19,7 @@ spec:
     targetRevision: development
     helm:
       valueFiles:
-        - values.yaml
+        - ./data-apps/values.yaml
   syncPolicy:
     automated:
       prune: true

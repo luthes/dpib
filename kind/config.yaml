@@ -9,5 +9,7 @@ nodes:
       - containerPort: 8080
         hostPort: 8080
       # Argo CD
+      - containerPort: 8080
+        hostPort: 18080
       # Argo Workflows
       # Argo Events
