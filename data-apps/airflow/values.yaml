@@ -2,3 +2,24 @@ airflow:
   workers:
     persistence:
       enabled: false
+  createUserJob:
+    enabled: true
+    # Command to use when running the create user job (templated).
+    # Args to use when running the create user job (templated).
+    serviceAccount:
+      # Specifies whether a ServiceAccount should be created
+      create: true
+    useHelmHooks: true
+    applyCustomEnv: true
+
+  # Airflow database migration job settings
+  migrateDatabaseJob:
+    enabled: true
+    # Command to use when running the migrate database job (templated).
+    serviceAccount:
+      # Specifies whether a ServiceAccount should be created
+      create: true
+      # The name of the ServiceAccount to use.
+      # If not set and create is true, a name is generated using the release name
+    useHelmHooks: true
+    applyCustomEnv: true
