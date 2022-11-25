@@ -1,0 +1,10 @@
+apiVersion: v2
+name: platform-airbyte
+description: Airbyte as part of our complete Open Source Data Platform
+type: application
+version: 0.0.1
+appVersion: "0.0.1"
+dependencies:
+  - name: airbyte
+    version: 0.42.0
+    repository: https://airbytehq.github.io/helm-charts
