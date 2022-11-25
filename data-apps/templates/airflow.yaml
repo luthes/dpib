@@ -15,7 +15,7 @@
 #     chart: airflow
 #     helm:
 #       values:
-# 
+#
 #       # This will work in 2.6 see issue https://github.com/argoproj/argo-cd/issues/2789
 #       # valueFiles:
 #       #   - values/airflow/dev.yaml
