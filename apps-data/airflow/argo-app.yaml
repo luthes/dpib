@@ -6,13 +6,16 @@ metadata:
   namespace: argocd
 spec:
   project: lutherlabs-data-apps-project
-  source:
-    chart: airflow
-    repoURL: https://airflow.apache.org
-    targetRevision: 1.8.0
-    helm:
-      valueFiles:
-        - values.yaml
+  sources:
+    - repoURL: 'https://github.com/luthes/dpib'
+      targetRevision: master
+      ref: values
+    - chart: airflow
+      repoURL: https://airflow.apache.org
+      targetRevision: 1.8.0
+      helm:
+        valueFiles:
+          - $values/apps-data/airflow/values.yaml
       releaseName: airflow
   destination:
     server: "https://kubernetes.default.svc"
@@ -20,3 +23,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
+

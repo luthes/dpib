@@ -6,12 +6,16 @@ metadata:
   namespace: argocd
 spec:
   project: lutherlabs-data-apps-project
-  source:
-    chart: superset
-    repoURL: https://apache.github.io/superset
-    targetRevision: 0.1.1
-    helm:
-      releaseName: superset
+  sources:
+    - repoURL: 'https://github.com/luthes/dpib'
+      targetRevision: master
+      ref: values
+    - chart: superset
+      repoURL: https://apache.github.io/superset
+      targetRevision: 0.1.1
+      helm:
+        releaseName: superset
+          - $values/apps-data/superset/values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: data-apps
