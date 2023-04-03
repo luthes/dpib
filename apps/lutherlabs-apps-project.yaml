@@ -25,6 +25,12 @@ spec:
     - namespace: argocd # only for Apps, wish I could filter it
       server: https://kubernetes.default.svc
       name: in-cluster
+    - namespace: airflow # only for Apps, wish I could filter it
+      server: https://kubernetes.default.svc
+      name: in-cluster
+    - namespace: superset # only for Apps, wish I could filter it
+      server: https://kubernetes.default.svc
+      name: in-cluster
 
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:

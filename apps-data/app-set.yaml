@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: data-apps
+  namespace: argocd
 spec:
   goTemplate: true
   generators:
@@ -14,56 +15,19 @@ spec:
                 - path: apps-data/*
           - list:
               elements:
-                - cluster: https://kubernetes.default.svc
+                - cluster: dev
                   url: https://kubernetes.default.svc
-                  project:
-                    lutherlabs-data-apps-project
+                  values:
+                    project: lutherlabs-data-apps-project
   template:
     metadata:
-      name: '{{ .path }}-{{ .cluster }}'
+      name: '{{ .path.basename }}-{{ .cluster }}'
     spec:
       project: '{{ .values.project }}'
       source:
         repoURL: https://github.com/luthes/dpib.git
-        targetRevision: HEAD
+        targetRevision: master
         path: '{{ .path.path }}'
       destination:
-        server: '{{ url }}'
+        server: '{{ .url }}'
         namespace: '{{ .path.basename }}'
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: list-git
-# spec:
-#   goTemplate: true
-#   generators:
-#   - matrix:
-#       generators:
-#       - git:
-#           repoURL: https://github.com/argoproj/argo-cd.git
-#           revision: HEAD
-#           directories:
-#           - path: applicationset/examples/matrix/cluster-addons/*
-#       - list:
-#           elements:
-#           - cluster: engineering-dev
-#             url: https://1.2.3.4
-#             values:
-#               project: dev
-#           - cluster: engineering-prod
-#             url: https://2.4.6.8
-#             values:
-#               project: prod
-#   template:
-#     metadata:
-#       name: '{{.path.basename}}-{{.cluster}}'
-#     spec:
-#       project: '{{.values.project}}'
-#       source:
-#         repoURL: https://github.com/argoproj/argo-cd.git
-#         targetRevision: HEAD
-#         path: '{{.path.path}}'
-#       destination:
-#         server: '{{.url}}'
-#         namespace: '{{.path.basename}}'
