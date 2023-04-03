@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: airflow-lb-service
+  namespace: default
+  labels:
+    app.kubernetes.io/name: load-balancer-airflow
+  annotations:
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+  selector:
+    app: airflow
+    component: web
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster

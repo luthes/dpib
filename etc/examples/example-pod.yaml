@@ -1,0 +1,76 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: example-namespace
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-demo
+  namespace: example-namespace
+spec:
+  containers:
+  - name: memory-demo-ctr
+    image: polinux/stress
+    resources:
+      limits:
+        memory: "500Mi"
+      requests:
+        memory: "200Mi"
+    command: ["stress"]
+    args: ["--vm", "1", "--vm-bytes", "150M", "--vm-hang", "1"]
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: hello-kubernetes
+#  namespace: example-namespace
+#spec:
+#  type: LoadBalancer
+#  ports:
+#    - port: 80
+#      targetPort: 8080
+#  selector:
+#    app: hello-kubernetes
+#
+#---
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: hello-kubernetes
+#  namespace: example-namespace
+#spec:
+#  replicas: 3
+#  selector:
+#    matchLabels:
+#      app: hello-kubernetes
+#  template:
+#    metadata:
+#      labels:
+#        app: hello-kubernetes
+#    spec:
+#      containers:
+#        - name: hello-kubernetes
+#          image: paulbouwer/hello-kubernetes:1.8
+#          ports:
+#            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+

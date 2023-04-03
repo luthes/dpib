@@ -1,0 +1,20 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: superset
+  namespace: argocd
+spec:
+  project: lutherlabs-data-apps-project
+  source:
+    chart: superset
+    repoURL: https://apache.github.io/superset
+    targetRevision: 0.1.1
+    helm:
+      releaseName: superset
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: data-apps
+  syncPolicy:
+    automated:
+      prune: true
