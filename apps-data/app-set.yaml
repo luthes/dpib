@@ -1,0 +1,69 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: data-apps
+spec:
+  goTemplate: true
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/luthes/dpib
+              revision: master
+              directories:
+                - path: apps-data/*
+          - list:
+              elements:
+                - cluster: https://kubernetes.default.svc
+                  url: https://kubernetes.default.svc
+                  project:
+                    lutherlabs-data-apps-project
+  template:
+    metadata:
+      name: '{{ .path }}-{{ .cluster }}'
+    spec:
+      project: '{{ .values.project }}'
+      source:
+        repoURL: https://github.com/luthes/dpib.git
+        targetRevision: HEAD
+        path: '{{ .path.path }}'
+      destination:
+        server: '{{ url }}'
+        namespace: '{{ .path.basename }}'
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: ApplicationSet
+# metadata:
+#   name: list-git
+# spec:
+#   goTemplate: true
+#   generators:
+#   - matrix:
+#       generators:
+#       - git:
+#           repoURL: https://github.com/argoproj/argo-cd.git
+#           revision: HEAD
+#           directories:
+#           - path: applicationset/examples/matrix/cluster-addons/*
+#       - list:
+#           elements:
+#           - cluster: engineering-dev
+#             url: https://1.2.3.4
+#             values:
+#               project: dev
+#           - cluster: engineering-prod
+#             url: https://2.4.6.8
+#             values:
+#               project: prod
+#   template:
+#     metadata:
+#       name: '{{.path.basename}}-{{.cluster}}'
+#     spec:
+#       project: '{{.values.project}}'
+#       source:
+#         repoURL: https://github.com/argoproj/argo-cd.git
+#         targetRevision: HEAD
+#         path: '{{.path.path}}'
+#       destination:
+#         server: '{{.url}}'
+#         namespace: '{{.path.basename}}'

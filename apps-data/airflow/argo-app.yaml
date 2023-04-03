@@ -6,19 +6,16 @@ metadata:
   namespace: argocd
 spec:
   project: lutherlabs-data-apps-project
-  sources:
-    - repoURL: '{{ Values.spec.source.repoURL }}'
-      targetRevision: '{{ Values.spec.source.targetRevision }}'
-      ref: values
-    - chart: airflow
-      repoURL: https://airflow.apache.org
-      targetRevision: 1.8.0
-      helm:
-        valueFiles:
-          - $values/apps-data/airflow/values.yaml
+  source:
+    chart: airflow
+    repoURL: https://airflow.apache.org
+    targetRevision: 1.8.0
+    helm:
+      valueFiles:
+        - values.yaml
       releaseName: airflow
   destination:
-    server: '{{ Values.spec.destination.server }}'
+    server: "https://kubernetes.default.svc"
     namespace: data-apps
   syncPolicy:
     automated:
