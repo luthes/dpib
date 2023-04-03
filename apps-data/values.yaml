@@ -1,2 +1,12 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps
+    targetRevision: HEAD
+syncPolicy:
+  automated:
+    prune: true
 values:
-  name: name
+  airflow:
+    app_name: airflow
