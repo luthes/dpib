@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: data-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: data-apps
+    server: https://kubernetes.default.svc
+  project: lutherlabs-data-apps-project
+  source:
+    directory:
+      jsonnet: {}
+      recurse: true
+    path: apps-data/
+    repoURL: git@github.com:luthes/dpib
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 5
+
