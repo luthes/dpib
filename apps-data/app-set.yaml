@@ -18,7 +18,11 @@ spec:
                 - cluster: dev
                   url: https://kubernetes.default.svc
                   values:
-                    project: lutherlabs-data-apps-project
+                    project: lutherlabs-data-apps-project-dev
+                - cluster: prod
+                  url: https://kubernetes.default.svc
+                  values:
+                    project: lutherlabs-data-apps-project-prod
   template:
     metadata:
       name: '{{ .path.basename }}-{{ .cluster }}'
