@@ -18,34 +18,44 @@ spec:
           - cluster: dev-airflow
             url: https://kubernetes.default.svc
             project: lutherlabs-data-apps-project-dev
-            helmValues:
-              chart: airflow
-              valueFiles:
-                - somevalues.yaml
-          - cluster: prod-airflow
-            url: https://kubernetes.default.svc
-            project: lutherlabs-data-apps-project-prod
-            helmValues:
-              chart: airflow
-              helm:
-                valueFiles:
-                  - somevalues.yaml
+            namespace: data-apps-dev
+            helmRepoURL: https://airflow.apache.org/
+            helmChart: airflow
+            helmValuesRepo: https://github.com/luthes/dpib
+            helmValuesBranch: master
+            helmValueFiles:
+              - values.yaml # should be a full path to the repo prob
+          # - cluster: prod-airflow
+          #   url: https://kubernetes.default.svc
+          #   project: lutherlabs-data-apps-project-prod
+          #   namespace: data-apps-prod
+          #   helmRepoURL: https://airflow.apache.org/
+          #   helmChart: airflow
+          #   helmValuesRepo: https://github.com/luthes/dpib
+          #   helmValuesBranch: master
+          #   helmValueFiles:
+          #     - values.yaml # should be a full path to the repo prob
   template:
     metadata:
-      name: '{{ .path.basename }}-{{ .cluster }}'
+      name: '{{ .cluster }}-{{ .helmChart }}'
     spec:
       project: '{{ .project }}'
-      source:
-        chart: '{{ .helmValues.chart }}'
-        repoURL: https://github.com/luthes/dpib.git
-        targetRevision: master
-        path: '{{ .path.path }}'
-        helm: 
-          valueFiles: '{{ .helmValues.valueFiles }}'
-          releaseName: '{{ .path.basename}}-{{ .cluster }}'
+      sources:
+        - repoURL: '{{ .helmValuesRepo }}'
+          targetRevision: '{{ .helmValuesBranch }}'
+          ref: RepoValues
+        - chart: '{{ .helmChart }}'
+          repoURL: '{{ .helmRepoURL }}'
+          targetRevision: 1.8.0
+          helm:
+            valueFiles:
+              # This should change to be env specific
+              # - values.yaml
+              - https://github.com/luthes/dpib/apps-data/values.yaml
+            releaseName: '{{ .cluster }}'
       destination:
         server: '{{ .url }}'
-        namespace: '{{ .path.basename }}'
+        namespace: '{{ .namespace }}'
       syncPolicy:
         automated:
           prune: true
