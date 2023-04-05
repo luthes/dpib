@@ -19,34 +19,28 @@ spec:
   # Destination clusters can be identified by 'server', 'name', or both.
   # We should add more destinations here.
   destinations:
-    - namespace: data-apps
+    - namespace: data-apps-dev
       server: https://kubernetes.default.svc
       name: in-cluster
     - namespace: argocd # only for Apps, wish I could filter it
       server: https://kubernetes.default.svc
       name: in-cluster
-    - namespace: airflow # only for Apps, wish I could filter it
-      server: https://kubernetes.default.svc
-      name: in-cluster
-    - namespace: superset # only for Apps, wish I could filter it
-      server: https://kubernetes.default.svc
-      name: in-cluster
 
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
-    - group: ""
-      kind: Namespace
+    - group: "*"
+      kind: "*"
 
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-    - group: ""
-      kind: ResourceQuota
-    - group: ""
-      kind: LimitRange
-    - group: ""
-      kind: NetworkPolicy
+  # # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  # namespaceResourceBlacklist:
+  #   - group: ""
+  #     kind: ResourceQuota
+  #   - group: ""
+  #     kind: LimitRange
+  #   - group: ""
+  #     kind: NetworkPolicy
 
-  # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
+  # # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"
@@ -116,7 +110,7 @@ spec:
   # Destination clusters can be identified by 'server', 'name', or both.
   # We should add more destinations here.
   destinations:
-    - namespace: data-apps
+    - namespace: data-apps-prod
       server: https://kubernetes.default.svc
       name: in-cluster
     - namespace: argocd # only for Apps, wish I could filter it
@@ -131,17 +125,17 @@ spec:
 
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
-    - group: ""
-      kind: Namespace
+    - group: "*"
+      kind: "*"
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-    - group: ""
-      kind: ResourceQuota
-    - group: ""
-      kind: LimitRange
-    - group: ""
-      kind: NetworkPolicy
+  # namespaceResourceBlacklist:
+  #   - group: ""
+  #     kind: ResourceQuota
+  #   - group: ""
+  #     kind: LimitRange
+  #   - group: ""
+  #     kind: NetworkPolicy
 
   # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
   namespaceResourceWhitelist:

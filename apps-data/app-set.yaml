@@ -6,32 +6,43 @@ metadata:
 spec:
   goTemplate: true
   generators:
-    - matrix:
-        generators:
-          - git:
-              repoURL: https://github.com/luthes/dpib
-              revision: master
-              directories:
-                - path: apps-data/*
-          - list:
-              elements:
-                - cluster: dev
-                  url: https://kubernetes.default.svc
-                  values:
-                    project: lutherlabs-data-apps-project-dev
-                - cluster: prod
-                  url: https://kubernetes.default.svc
-                  values:
-                    project: lutherlabs-data-apps-project-prod
+    #- matrix:
+    #    generators:
+    #      - git:
+    #          repoURL: https://github.com/luthes/dpib
+    #          revision: master
+    #          directories:
+    #            - path: apps-data/*
+    - list:
+        elements:
+          - cluster: dev-airflow
+            url: https://kubernetes.default.svc
+            project: lutherlabs-data-apps-project-dev
+            helmValues:
+              chart: airflow
+              valueFiles:
+                - somevalues.yaml
+          - cluster: prod-airflow
+            url: https://kubernetes.default.svc
+            project: lutherlabs-data-apps-project-prod
+            helmValues:
+              chart: airflow
+              helm:
+                valueFiles:
+                  - somevalues.yaml
   template:
     metadata:
       name: '{{ .path.basename }}-{{ .cluster }}'
     spec:
-      project: '{{ .values.project }}'
+      project: '{{ .project }}'
       source:
+        chart: '{{ .helmValues.chart }}'
         repoURL: https://github.com/luthes/dpib.git
         targetRevision: master
         path: '{{ .path.path }}'
+        helm: 
+          valueFiles: '{{ .helmValues.valueFiles }}'
+          releaseName: '{{ .path.basename}}-{{ .cluster }}'
       destination:
         server: '{{ .url }}'
         namespace: '{{ .path.basename }}'
