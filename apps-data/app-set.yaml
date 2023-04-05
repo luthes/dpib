@@ -22,6 +22,7 @@ spec:
             helmRepoURL: https://apache.github.io/superset
             helmChart: superset
             helmValuesRepo: https://github.com/luthes/dpib
+            helmValuesPath: apps-data/superset/values.yaml
             helmValuesBranch: master
             helmTargetRevision: 0.8.10
             helmValueFiles:
@@ -33,6 +34,7 @@ spec:
             helmRepoURL: https://airflow.apache.org/
             helmChart: airflow
             helmValuesRepo: https://github.com/luthes/dpib
+            helmValuesPath: apps-data/airflow/values.yaml
             helmValuesBranch: master
             helmTargetRevision: 1.8.0
             helmValueFiles:
@@ -61,7 +63,7 @@ spec:
           targetRevision: '{{ .helmTargetRevision }}'
           helm:
             valueFiles:
-              - '$RepoValues/apps-data/airflow/values.yaml'
+              - '$RepoValues/{{ .helmValuesPath }}'
             releaseName: '{{ .cluster }}'
       destination:
         server: '{{ .url }}'
