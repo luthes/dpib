@@ -1158,19 +1158,19 @@ triggerer:
   #  fsGroup: 0
   #  runAsGroup: 0
 
-  persistence:
-    # Enable persistent volumes
-    enabled: true
-    # Volume size for triggerer StatefulSet
-    size: 10Gi
-    # If using a custom storageClass, pass name ref to all statefulSets here
-    storageClassName:
-    # Execute init container to chown log directory.
-    # This is currently only needed in kind, due to usage
-    # of local-path provisioner.
-    fixPermissions: false
-    # Annotations to add to triggerer volumes
-    annotations: {}
+  # persistence:
+  #   # Enable persistent volumes
+  #   enabled: true
+  #   # Volume size for triggerer StatefulSet
+  #   size: 10Gi
+  #   # If using a custom storageClass, pass name ref to all statefulSets here
+  #   storageClassName:
+  #   # Execute init container to chown log directory.
+  #   # This is currently only needed in kind, due to usage
+  #   # of local-path provisioner.
+  #   fixPermissions: false
+  #   # Annotations to add to triggerer volumes
+  #   annotations: {}
 
   resources: {}
   #  limits:
