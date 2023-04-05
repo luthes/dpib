@@ -517,7 +517,7 @@ workers:
     # Volume size for worker StatefulSet
     size: 10Gi
     # If using a custom storageClass, pass name ref to all statefulSets here
-    storageClassName:
+    storageClassName: longhorn
     # Execute init container to chown log directory.
     # This is currently only needed in kind, due to usage
     # of local-path provisioner.
@@ -942,12 +942,12 @@ webserver:
     periodSeconds: 5
     scheme: HTTP
 
-  readinessProbe:
-    initialDelaySeconds: 15
-    timeoutSeconds: 30
-    failureThreshold: 20
-    periodSeconds: 5
-    scheme: HTTP
+  # readinessProbe:
+  #   initialDelaySeconds: 15
+  #   timeoutSeconds: 30
+  #   failureThreshold: 20
+  #   periodSeconds: 5
+  #   scheme: HTTP
 
   # Number of webservers
   replicas: 1
@@ -1931,13 +1931,13 @@ dags:
     # Volume size for dags
     size: 1Gi
     # If using a custom storageClass, pass name here
-    storageClassName:
+    storageClassName: longhorn
     # access mode of the persistent volume
     accessMode: ReadWriteOnce
     ## the name of an existing PVC to use
-    existingClaim:
+    # existingClaim:
     ## optional subpath for dag volume mount
-    subPath: ~
+    # subPath: ~
   gitSync:
     enabled: false
 
@@ -2021,8 +2021,8 @@ logs:
     # Volume size for logs
     size: 10Gi
     # If using a custom storageClass, pass name here
-    storageClassName:
+    storageClassName: longhorn
     ## the name of an existing PVC to use
-    existingClaim:
+    # existingClaim:
 
 
