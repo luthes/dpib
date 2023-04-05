@@ -194,7 +194,7 @@ initImage:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 8088
   annotations:
     {}
