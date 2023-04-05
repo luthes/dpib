@@ -756,7 +756,7 @@ scheduler:
     # Args to use when running the Airflow scheduler log groomer sidecar (templated).
     args: ["bash", "/clean-logs"]
     # Number of days to retain logs
-    retentionDays: 15
+    retentionDays: 3
     resources: {}
     #  limits:
     #   cpu: 100m
@@ -2026,4 +2026,5 @@ logs:
     storageClassName:
     ## the name of an existing PVC to use
     existingClaim:
+
 
