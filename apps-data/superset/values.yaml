@@ -196,13 +196,6 @@ initImage:
 service:
   type: LoadBalancer
   port: 8088
-  annotations:
-    {}
-    # cloud.google.com/load-balancer-type: "Internal"
-  loadBalancerIP: null
-  #nodePort:
-  #  # -- (int)
-  #  http: nil
 
 ingress:
   enabled: false
