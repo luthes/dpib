@@ -1125,7 +1125,7 @@ triggerer:
   args: ["bash", "-c", "exec airflow triggerer"]
 
   # Update Strategy when triggerer is deployed as a StatefulSet
-  updateStrategy: ~
+  # updateStrategy: ~
   # Update Strategy when triggerer is deployed as a Deployment
   strategy:
     rollingUpdate:
@@ -1455,7 +1455,7 @@ statsd:
   args: ["--statsd.mapping-config=/etc/statsd-exporter/mappings.yml"]
 
   # Annotations to add to the StatsD Deployment.
-  annotations: {}
+  # annotations: {}
 
   # Create ServiceAccount
   serviceAccount:
@@ -1633,15 +1633,15 @@ pgbouncer:
     #   memory: 128Mi
     sslmode: "disable"
 
-    livenessProbe:
-      initialDelaySeconds: 10
-      periodSeconds: 10
-      timeoutSeconds: 1
+    # livenessProbe:
+    #   initialDelaySeconds: 10
+    #   periodSeconds: 10
+    #   timeoutSeconds: 1
 
-    readinessProbe:
-      initialDelaySeconds: 10
-      periodSeconds: 10
-      timeoutSeconds: 1
+      # readinessProbe:
+      #   initialDelaySeconds: 10
+      #   periodSeconds: 10
+      #   timeoutSeconds: 1
 
 # Configuration for the redis provisioned by the chart
 redis:
@@ -1736,7 +1736,7 @@ ports:
   flowerUI: 5555
   airflowUI: 8080
   workerLogs: 8793
-  triggererLogs: 8794
+  # triggererLogs: 8794
   redisDB: 6379
   statsdIngest: 9125
   statsdScrape: 9102
