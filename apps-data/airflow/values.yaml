@@ -661,7 +661,7 @@ scheduler:
 
   # Update Strategy when scheduler is deployed as a StatefulSet
   # (when using LocalExecutor and workers.persistence)
-  updateStrategy: ~
+  # updateStrategy: ~
   # Update Strategy when scheduler is deployed as a Deployment
   # (when not using LocalExecutor and workers.persistence)
   strategy: ~
@@ -775,7 +775,7 @@ scheduler:
 # Airflow create user job settings
 createUserJob:
   # Limit the lifetime of the job object after it finished execution.
-  ttlSecondsAfterFinished: 300
+  # ttlSecondsAfterFinished: 300
   # Command to use when running the create user job (templated).
   command: ~
   # Args to use when running the create user job (templated).
@@ -855,7 +855,7 @@ createUserJob:
 migrateDatabaseJob:
   enabled: true
   # Limit the lifetime of the job object after it finished execution.
-  ttlSecondsAfterFinished: 300
+  # ttlSecondsAfterFinished: 300
   # Command to use when running the migrate database job (templated).
   command: ~
   # Args to use when running the migrate database job (templated).
@@ -1221,22 +1221,22 @@ triggerer:
   # Labels specific to triggerer objects and pods
   labels: {}
 
-  logGroomerSidecar:
-    # Whether to deploy the Airflow triggerer log groomer sidecar.
-    enabled: true
-    # Command to use when running the Airflow triggerer log groomer sidecar (templated).
-    command: ~
-    # Args to use when running the Airflow triggerer log groomer sidecar (templated).
-    args: ["bash", "/clean-logs"]
-    # Number of days to retain logs
-    retentionDays: 3 
-    resources: {}
-    #  limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    #  requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+  # logGroomerSidecar:
+  #   # Whether to deploy the Airflow triggerer log groomer sidecar.
+  #   enabled: true
+  #   # Command to use when running the Airflow triggerer log groomer sidecar (templated).
+  #   command: ~
+  #   # Args to use when running the Airflow triggerer log groomer sidecar (templated).
+  #   args: ["bash", "/clean-logs"]
+  #   # Number of days to retain logs
+  #   retentionDays: 3 
+  #   resources: {}
+  #   #  limits:
+  #   #   cpu: 100m
+  #   #   memory: 128Mi
+  #   #  requests:
+  #   #   cpu: 100m
+  #   #   memory: 128Mi
 
   waitForMigrations:
     # Whether to create init container to wait for db migrations
@@ -1659,15 +1659,15 @@ redis:
     # Annotations to add to worker kubernetes service account.
     annotations: {}
 
-  persistence:
-    # Enable persistent volumes
-    enabled: true
-    # Volume size for worker StatefulSet
-    size: 1Gi
-    # If using a custom storageClass, pass name ref to all statefulSets here
-    storageClassName:
-    # Annotations to add to redis volumes
-    annotations: {}
+  # persistence:
+  #   # Enable persistent volumes
+  #   enabled: true
+  #   # Volume size for worker StatefulSet
+  #   size: 1Gi
+  #   # If using a custom storageClass, pass name ref to all statefulSets here
+  #   storageClassName:
+  #   # Annotations to add to redis volumes
+  #   annotations: {}
 
   resources: {}
   #  limits:
@@ -2020,8 +2020,6 @@ logs:
     enabled: false
     # Volume size for logs
     size: 10Gi
-    # Annotations for the logs PVC
-    annotations: {}
     # If using a custom storageClass, pass name here
     storageClassName:
     ## the name of an existing PVC to use
