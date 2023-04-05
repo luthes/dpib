@@ -591,7 +591,7 @@ workers:
   # hostAliases to use in worker pods.
   # See:
   # https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
-  hostAliases: []
+  # hostAliases: []
   # - ip: "127.0.0.2"
   #   hostnames:
   #   - "test.hostname.one"
@@ -600,9 +600,9 @@ workers:
   #   - "test.hostname.two"
 
   # annotations for the worker resource
-  annotations: {}
+  # annotations: {}
 
-  podAnnotations: {}
+  # podAnnotations: {}
 
   # Labels specific to workers objects and pods
   labels: {}
@@ -632,7 +632,7 @@ workers:
 # Airflow scheduler settings
 scheduler:
   #  hostAliases for the scheduler pod
-  hostAliases: []
+  # hostAliases: []
   #  - ip: "127.0.0.1"
   #    hostnames:
   #      - "foo.local"
@@ -681,7 +681,7 @@ scheduler:
     name: ~
 
     # Annotations to add to scheduler kubernetes service account.
-    annotations: {}
+    # annotations: {}
 
   # Scheduler pod disruption budget
   podDisruptionBudget:
@@ -741,9 +741,9 @@ scheduler:
   priorityClassName: ~
 
   # annotations for scheduler deployment
-  annotations: {}
+  # annotations: {}
 
-  podAnnotations: {}
+  # podAnnotations: {}
 
   # Labels specific to scheduler objects and pods
   labels: {}
@@ -927,7 +927,7 @@ migrateDatabaseJob:
 # Airflow webserver settings
 webserver:
   #  hostAliases for the webserver pod
-  hostAliases: []
+  # hostAliases: []
   #  - ip: "127.0.0.1"
   #    hostnames:
   #      - "foo.local"
@@ -1760,7 +1760,7 @@ cleanup:
   args: ["bash", "-c", "exec airflow kubernetes cleanup-pods --namespace={{ .Release.Namespace }}"]
 
   # jobAnnotations are annotations on the cleanup CronJob
-  jobAnnotations: {}
+  # jobAnnotations: {}
 
   # Select certain nodes for airflow cleanup pods.
   nodeSelector: {}
