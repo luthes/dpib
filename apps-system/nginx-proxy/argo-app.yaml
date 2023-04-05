@@ -5,7 +5,7 @@ metadata:
   name: nginx-controller
   namespace: argocd
 spec:
-  project: lutherlabs-clusterwide-project
+  project: lutherlabs-system
   source:
     chart: nginx-ingress
     repoURL: https://helm.nginx.com/stable
@@ -14,7 +14,7 @@ spec:
       releaseName: nginx-ingress
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: nginx-system
   syncPolicy:
     automated:
       prune: true
