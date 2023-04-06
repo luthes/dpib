@@ -46,7 +46,7 @@ spec:
             helmRepoURL: https://airbytehq.github.io/helm-charts
             helmChart: airbyte
             helmValuesRepo: https://github.com/luthes/dpib
-            helmValuesPath: apps-data/airflow/values.yaml
+            helmValuesPath: apps-data/airbyte/values.yaml
             helmValuesBranch: master
             helmTargetRevision: 0.45.5
             helmValueFiles:
