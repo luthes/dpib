@@ -41,7 +41,7 @@ spec:
               - values.yaml # should be a full path to the repo prob
           - cluster: dev-airbyte
             url: https://kubernetes.default.svc
-            project: lutherlabs-data-apps-project-dev
+            project: lutherlabs-data-apps-prairbyteoject-dev
             namespace: data-apps-dev
             helmRepoURL: https://airbytehq.github.io/helm-charts
             helmChart: airbyte
