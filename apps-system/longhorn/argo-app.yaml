@@ -5,7 +5,7 @@ metadata:
   name: longhorn
   namespace: argocd
 spec:
-  project: lutherlabs-clusterwide-project
+  project: lutherlabs-system
   source:
     chart: longhorn
     repoURL: https://charts.longhorn.io
