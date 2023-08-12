@@ -24,7 +24,7 @@ spec:
             helmValuesRepo: https://github.com/luthes/dpib
             helmValuesPath: apps-data/superset/values.yaml
             helmValuesBranch: master
-            helmTargetRevision: 0.8.10
+            helmTargetRevision: 0.10.5
             helmValueFiles:
               - values.yaml # should be a full path to the repo prob
           - cluster: dev-airflow
