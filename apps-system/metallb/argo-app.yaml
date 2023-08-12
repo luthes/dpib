@@ -18,7 +18,7 @@ spec:
   source:
     repoURL: https://github.com/luthes/dpib.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: HEAD
-    path: apps-system/metallb-system
+    path: apps-system/metallb
 
     # directory
     directory:
