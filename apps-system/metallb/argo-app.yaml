@@ -2,18 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: metallb
-  # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
-  # Add this finalizer ONLY if you want these to cascade delete.
-  finalizers:
-    # The default behaviour is foreground cascading deletion
-    - resources-finalizer.argocd.argoproj.io
   labels:
     name: metallb-system
 spec:
-  # The project the application belongs to.
   project: lutherlabs-system
-
   # Source of the application manifests
   source:
     repoURL: https://github.com/luthes/dpib.git  # Can point to either a Helm chart repo or a git repo.
@@ -24,14 +17,6 @@ spec:
     directory:
       recurse: true
       include: '*.yaml'
-
-  # Sources field specifies the list of sources for the application
-  # This might be useful for deploying sets of apps. Data Aps -- Airflow, Superset, Clickhouse or Argo Cd/Workflows/etc
-  # sources: # This might be us
-  #  - repoURL: https://github.com/argoproj/argocd-example-apps.git  # Can point to either a Helm chart repo or a git repo.
-  #    targetRevision: HEAD  # For Helm, this refers to the chart version.
-  #    path: guestbook  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
-  #    ref: my-repo  # For Helm, acts as a reference to this source for fetching values files from this source. Has no meaning when under `source` field
 
   # Destination cluster and namespace to deploy the application
   destination:
