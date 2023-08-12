@@ -28,11 +28,9 @@ spec:
     - namespace: longhorn-system
       server: https://kubernetes.default.svc
       name: in-cluster
-  
-  # Deny all cluster-scoped resources from being created, except for Namespace
-  clusterResourceWhitelist:
-    - group: "*"
-      kind: "*"
+    - namespace: default
+      server: https://kubernetes.default.svc
+      name: in-cluster
 
   # # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   # namespaceResourceBlacklist:
