@@ -23,7 +23,7 @@ spec:
             helmChart: superset
             helmValuesRepo: https://github.com/luthes/dpib
             helmValuesPath: apps-data/superset/values.yaml
-            helmValuesBranch: master
+            helmValuesBranch: development
             helmTargetRevision: 0.10.5
             helmValueFiles:
               - values.yaml # should be a full path to the repo prob
@@ -35,7 +35,7 @@ spec:
             helmChart: airflow
             helmValuesRepo: https://github.com/luthes/dpib
             helmValuesPath: apps-data/airflow/values.yaml
-            helmValuesBranch: master
+            helmValuesBranch: development
             helmTargetRevision: 1.8.0
             helmValueFiles:
               - values.yaml # should be a full path to the repo prob
@@ -47,7 +47,7 @@ spec:
             helmChart: airbyte
             helmValuesRepo: https://github.com/luthes/dpib
             helmValuesPath: apps-data/airbyte/values.yaml
-            helmValuesBranch: master
+            helmValuesBranch: development
             helmTargetRevision: 0.45.5
             helmValueFiles:
               - values.yaml # should be a full path to the repo prob

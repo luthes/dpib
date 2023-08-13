@@ -60,7 +60,8 @@ spec:
       jwtTokens:
         - iat: 1535390316
 
-  # Sync windows restrict when Applications may be synced. https://argo-cd.readthedocs.io/en/stable/user-guide/sync_windows/
+  # Sync windows restrict when Applications may 
+          # e synced. https://argo-cd.readthedocs.io/en/stable/user-guide/sync_windows/
   # syncWindows:
   #   - kind: allow
   #     schedule: "10 1 * * *"
