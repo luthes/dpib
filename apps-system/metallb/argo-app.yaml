@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: metallb
-  namespace: argocd
+  namespace: metallb-system
 spec:
   project: lutherlabs-system
   # Source of the application manifests
