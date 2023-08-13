@@ -6,4 +6,4 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 192.168.8.0/23
+  - 192.168.10.0/23
